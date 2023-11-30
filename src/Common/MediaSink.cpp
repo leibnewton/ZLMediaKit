@@ -38,6 +38,7 @@ bool MediaSink::addTrack(const Track::Ptr &track_in) {
     auto track_type = track->getTrackType();
     _track_map[track_type] = std::make_pair(track, false);
     _track_ready_callback[track_type] = [this, track]() {
+        InfoL << "track " << track->getCodecName() << " is ready";
         onTrackReady(track);
     };
     _ticker.resetTime();
